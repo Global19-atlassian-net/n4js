@@ -59,6 +59,9 @@ public class N4JSTypeAliasValidator extends AbstractN4JSDeclarativeValidator {
 	/** Disallow cyclic alias declarations. */
 	@Check
 	public void checkCyclicAliasDeclaration(N4TypeAliasDeclaration n4TypeAliasDecl) {
+		if (!n4TypeAliasDecl.isCyclic()) {
+			return; // no cycle
+		}
 		Stack<TypeAlias> cycle = collectTypeAliasCycle(n4TypeAliasDecl.getDefinedTypeAsTypeAlias(), null);
 		if (cycle == null) {
 			return; // no cycle

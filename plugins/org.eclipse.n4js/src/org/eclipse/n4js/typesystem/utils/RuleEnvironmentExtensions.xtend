@@ -18,6 +18,7 @@ import java.util.Collections
 import java.util.List
 import java.util.Map
 import java.util.Set
+import java.util.concurrent.atomic.AtomicBoolean
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
@@ -105,6 +106,13 @@ class RuleEnvironmentExtensions {
 	 * {@link #isFixedCapture(RuleEnvironment, ExistentialTypeRef)}.
 	 */
 	private static final String KEY__FIXED_CAPTURE_ID = "fixedCaptureId";
+
+	/**
+	 * Key for reporting about cyclic type aliases.
+	 * <p>
+	 * Client code should not use this constant directly, but should instead use methods
+	 */
+	private static final String KEY__REPORT_CYCLIC_TYPE_ALIAS = "reportCyclicTypeAlias";
 
 	public static final String GUARD_VARIABLE_DECLARATION = "varDecl";
 	public static final String GUARD_TYPE_CALL_EXPRESSION = "typeCallExpression";
@@ -354,6 +362,35 @@ class RuleEnvironmentExtensions {
 	 */
 	def static boolean isFixedCapture(RuleEnvironment G, ExistentialTypeRef etr) {
 		return G.get(KEY__FIXED_CAPTURE_ID -> etr.id) !== null;
+	}
+
+	/**
+	 * Set up the given rule environment to receive information about cyclic type aliases. Can be used before calling
+	 * {@link TypeSystemHelper#resolveTypeAliases(RuleEnvironment, TypeArgument) resolveTypeAliases()} to find out
+	 * about cycles.
+	 */
+	def static void requestReportCyclicTypeAlias(RuleEnvironment G) {
+		G.put(KEY__REPORT_CYCLIC_TYPE_ALIAS, new AtomicBoolean(false),
+			true); // note: 'true' means it will only add the value if key not yet present in G
+	}
+
+	/**
+	 * Returns <code>true</code> iff reporting of cyclic type aliases was requested via method
+	 * {@link #requestReportCyclicTypeAlias(RuleEnvironment)} for the given rule environment AND
+	 * afterwards a cyclic type alias was encountered.
+	 */
+	def static boolean didReportCyclicTypeAlias(RuleEnvironment G) {
+		val value = G.get(KEY__REPORT_CYCLIC_TYPE_ALIAS) as AtomicBoolean;
+		return value !== null && value.get();
+	}
+
+	/**
+	 * Iff reporting of cyclic type aliases was requested via method {@link #requestReportCyclicTypeAlias(RuleEnvironment)}
+	 * for the given rule environment, this method will mark the rule environment as having encountered a cyclic type alias.
+	 * Should be only invoked from {@link TypeAliasComputer}.
+	 */
+	def static package void reportCyclicTypeAliasIfRequested(RuleEnvironment G) {
+		(G.get(KEY__REPORT_CYCLIC_TYPE_ALIAS) as AtomicBoolean)?.set(true);
 	}
 
 	def static TypeRef createTypeRefFromUpperBound(TypeVariable typeVar) {

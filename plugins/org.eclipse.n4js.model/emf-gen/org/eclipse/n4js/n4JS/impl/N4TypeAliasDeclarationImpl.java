@@ -50,6 +50,7 @@ import org.eclipse.n4js.ts.types.TypeAlias;
  * <ul>
  *   <li>{@link org.eclipse.n4js.n4JS.impl.N4TypeAliasDeclarationImpl#getTypeVars <em>Type Vars</em>}</li>
  *   <li>{@link org.eclipse.n4js.n4JS.impl.N4TypeAliasDeclarationImpl#getDeclaredTypeRefNode <em>Declared Type Ref Node</em>}</li>
+ *   <li>{@link org.eclipse.n4js.n4JS.impl.N4TypeAliasDeclarationImpl#isCyclic <em>Cyclic</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,6 +75,26 @@ public class N4TypeAliasDeclarationImpl extends N4TypeDeclarationImpl implements
 	 * @ordered
 	 */
 	protected TypeReferenceNode<TypeRef> declaredTypeRefNode;
+
+	/**
+	 * The default value of the '{@link #isCyclic() <em>Cyclic</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCyclic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CYCLIC_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCyclic() <em>Cyclic</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCyclic()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean cyclic = CYCLIC_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,6 +179,29 @@ public class N4TypeAliasDeclarationImpl extends N4TypeDeclarationImpl implements
 	 * @generated
 	 */
 	@Override
+	public boolean isCyclic() {
+		return cyclic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCyclic(boolean newCyclic) {
+		boolean oldCyclic = cyclic;
+		cyclic = newCyclic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, N4JSPackage.N4_TYPE_ALIAS_DECLARATION__CYCLIC, oldCyclic, cyclic));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public TypeAlias getDefinedTypeAsTypeAlias() {
 		Type _definedType = this.getDefinedType();
 		return ((TypeAlias) _definedType);
@@ -221,6 +265,8 @@ public class N4TypeAliasDeclarationImpl extends N4TypeDeclarationImpl implements
 				return getTypeVars();
 			case N4JSPackage.N4_TYPE_ALIAS_DECLARATION__DECLARED_TYPE_REF_NODE:
 				return getDeclaredTypeRefNode();
+			case N4JSPackage.N4_TYPE_ALIAS_DECLARATION__CYCLIC:
+				return isCyclic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -241,6 +287,9 @@ public class N4TypeAliasDeclarationImpl extends N4TypeDeclarationImpl implements
 			case N4JSPackage.N4_TYPE_ALIAS_DECLARATION__DECLARED_TYPE_REF_NODE:
 				setDeclaredTypeRefNode((TypeReferenceNode<TypeRef>)newValue);
 				return;
+			case N4JSPackage.N4_TYPE_ALIAS_DECLARATION__CYCLIC:
+				setCyclic((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -259,6 +308,9 @@ public class N4TypeAliasDeclarationImpl extends N4TypeDeclarationImpl implements
 			case N4JSPackage.N4_TYPE_ALIAS_DECLARATION__DECLARED_TYPE_REF_NODE:
 				setDeclaredTypeRefNode((TypeReferenceNode<TypeRef>)null);
 				return;
+			case N4JSPackage.N4_TYPE_ALIAS_DECLARATION__CYCLIC:
+				setCyclic(CYCLIC_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -275,6 +327,8 @@ public class N4TypeAliasDeclarationImpl extends N4TypeDeclarationImpl implements
 				return typeVars != null && !typeVars.isEmpty();
 			case N4JSPackage.N4_TYPE_ALIAS_DECLARATION__DECLARED_TYPE_REF_NODE:
 				return declaredTypeRefNode != null;
+			case N4JSPackage.N4_TYPE_ALIAS_DECLARATION__CYCLIC:
+				return cyclic != CYCLIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -378,6 +432,22 @@ public class N4TypeAliasDeclarationImpl extends N4TypeDeclarationImpl implements
 				return getDeclaredTypeRefInAST();
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (cyclic: ");
+		result.append(cyclic);
+		result.append(')');
+		return result.toString();
 	}
 
 } //N4TypeAliasDeclarationImpl

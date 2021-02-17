@@ -72,8 +72,9 @@ package class TypeAliasComputer extends TypeSystemHelperStrategy {
 			}
 			if (!guard.tryNext(typeAlias)) {
 				// cyclic type alias declaration
+				G.reportCyclicTypeAliasIfRequested();
 				// NOTE: we could set 'originalAliasTypeRef' in the UnknownTypeRef, but we do not want
-				// to hide the fact that an error occurred!
+				// to hide the fact that an error occurred (in error messages, etc.)!
 				return TypeRefsFactory.eINSTANCE.createUnknownTypeRef();
 			}
 
@@ -120,6 +121,8 @@ package class TypeAliasComputer extends TypeSystemHelperStrategy {
 						val G2 = G.wrap;
 						G2.put(guardKey, Boolean.TRUE);
 						result = processNested(G2, result);
+					} else {
+						G.reportCyclicTypeAliasIfRequested();
 					}
 				}
 			}

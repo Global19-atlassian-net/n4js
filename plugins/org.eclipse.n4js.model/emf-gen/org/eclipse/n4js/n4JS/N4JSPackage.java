@@ -13184,13 +13184,22 @@ public interface N4JSPackage extends EPackage {
 	int N4_TYPE_ALIAS_DECLARATION__DECLARED_TYPE_REF_NODE = N4_TYPE_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Cyclic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int N4_TYPE_ALIAS_DECLARATION__CYCLIC = N4_TYPE_DECLARATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>N4 Type Alias Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int N4_TYPE_ALIAS_DECLARATION_FEATURE_COUNT = N4_TYPE_DECLARATION_FEATURE_COUNT + 2;
+	int N4_TYPE_ALIAS_DECLARATION_FEATURE_COUNT = N4_TYPE_DECLARATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get All Annotations</em>' operation.
@@ -21891,6 +21900,17 @@ public interface N4JSPackage extends EPackage {
 	EClass getN4TypeAliasDeclaration();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.n4js.n4JS.N4TypeAliasDeclaration#isCyclic <em>Cyclic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cyclic</em>'.
+	 * @see org.eclipse.n4js.n4JS.N4TypeAliasDeclaration#isCyclic()
+	 * @see #getN4TypeAliasDeclaration()
+	 * @generated
+	 */
+	EAttribute getN4TypeAliasDeclaration_Cyclic();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.n4js.n4JS.N4TypeAliasDeclaration#getDefinedTypeAsTypeAlias() <em>Get Defined Type As Type Alias</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27255,6 +27275,14 @@ public interface N4JSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass N4_TYPE_ALIAS_DECLARATION = eINSTANCE.getN4TypeAliasDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Cyclic</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute N4_TYPE_ALIAS_DECLARATION__CYCLIC = eINSTANCE.getN4TypeAliasDeclaration_Cyclic();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Defined Type As Type Alias</b></em>' operation.

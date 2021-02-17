@@ -2176,6 +2176,9 @@ class N4EnumLiteral extends NamedElement, TypableElement {
 
 class N4TypeAliasDeclaration extends N4TypeDeclaration, GenericDeclaration, TypedElement {
 
+	/* Set in {@code TypeRefProcessor} and used in {@code N4JSTypeAliasValidator}. */
+	transient boolean cyclic
+
 	op TypeAlias getDefinedTypeAsTypeAlias() {
 		return definedType as TypeAlias;
 	}

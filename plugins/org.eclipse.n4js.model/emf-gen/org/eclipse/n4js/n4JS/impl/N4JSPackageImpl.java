@@ -6616,6 +6616,16 @@ public class N4JSPackageImpl extends EPackageImpl implements N4JSPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getN4TypeAliasDeclaration_Cyclic() {
+		return (EAttribute)n4TypeAliasDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EOperation getN4TypeAliasDeclaration__GetDefinedTypeAsTypeAlias() {
 		return n4TypeAliasDeclarationEClass.getEOperations().get(0);
 	}
@@ -8362,6 +8372,7 @@ public class N4JSPackageImpl extends EPackageImpl implements N4JSPackage {
 		createEReference(n4EnumLiteralEClass, N4_ENUM_LITERAL__DEFINED_LITERAL);
 
 		n4TypeAliasDeclarationEClass = createEClass(N4_TYPE_ALIAS_DECLARATION);
+		createEAttribute(n4TypeAliasDeclarationEClass, N4_TYPE_ALIAS_DECLARATION__CYCLIC);
 		createEOperation(n4TypeAliasDeclarationEClass, N4_TYPE_ALIAS_DECLARATION___GET_DEFINED_TYPE_AS_TYPE_ALIAS);
 
 		modifiableElementEClass = createEClass(MODIFIABLE_ELEMENT);
@@ -9619,6 +9630,7 @@ public class N4JSPackageImpl extends EPackageImpl implements N4JSPackage {
 		initEReference(getN4EnumLiteral_DefinedLiteral(), theTypesPackage.getTEnumLiteral(), null, "definedLiteral", null, 0, 1, N4EnumLiteral.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(n4TypeAliasDeclarationEClass, N4TypeAliasDeclaration.class, "N4TypeAliasDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getN4TypeAliasDeclaration_Cyclic(), theEcorePackage.getEBoolean(), "cyclic", null, 0, 1, N4TypeAliasDeclaration.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getN4TypeAliasDeclaration__GetDefinedTypeAsTypeAlias(), theTypesPackage.getTypeAlias(), "getDefinedTypeAsTypeAlias", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
